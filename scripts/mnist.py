@@ -1,6 +1,8 @@
 import json
 from os import path
 
+from skimage.io import imsave
+
 import numpy as np
 
 class MNIST():
@@ -42,3 +44,25 @@ class MNIST():
 
         return [x_low, x_high], data[2]
 
+
+class AttentionSaver():
+    def __init__(self, output, att_model, data):
+        self._att_path = path.join(output, "attention_{:03d}.png")
+        self._patches_path = path.join(output, "patches_{:03d}_{:03d}.png")
+        self._att_model = att_model
+        (self._x, self._x_high), self._y = data[0]
+        self._imsave(
+            path.join(output, "image.png"),
+            self._x[0, :, :, 0]
+        )
+
+    def on_epoch_end(self, e, logs):
+        att, patches = self._att_model.predict([self._x, self._x_high])
+        self._imsave(self._att_path.format(e), att[0])
+        np.save(self._att_path.format(e)[:-4], att[0])
+        for i, p in enumerate(patches[0]):
+            self._imsave(self._patches_path.format(e, i), p[:, :, 0])
+
+    def _imsave(self, filepath, x):
+        x = (x*65535).astype(np.uint16)
+        imsave(filepath, x, check_contrast=False)
