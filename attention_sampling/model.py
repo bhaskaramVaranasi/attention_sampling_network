@@ -156,7 +156,7 @@ def get_model(outputs, width, height, scale, n_patches, patch_size, reg):
     )
 
     feature = nn.Sequential(
-        nn.Conv2d(shape_high, 32, kernel_size)
+        nn.Conv2d(shape_high, 32, kernel_size),
         nn.ReLU(),
         nn.Conv2d(32, 32, kernel_size=3),
         nn.ReLU(),
