@@ -6,6 +6,9 @@ The notebook expects the following files to be present in while running.
 - test.npl
 - parameters.json
 
+## Generating data
+Use the script make_mnist.py to generate the test data
+
 Visualization of the feature network.
 ![Feature - Convolution 1](feature_conv1.png)
 ![Feature - Convolution 2](feature_conv2.png)
