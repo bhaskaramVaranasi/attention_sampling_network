@@ -9,5 +9,5 @@ The notebook expects the following files to be present in while running.
 Visualization of the feature network.
 ![Feature - Convolution 1](feature_conv1.png)
 ![Feature - Convolution 2](feature_conv2.png)
-![Feature - Convolution 3](feature_conv3.png)
-![Feature - Convolution 4](feature_conv4.png)
+![Feature - Convolution 3](feature_conv_3.png)
+![Feature - Convolution 4](feature_conv_4.png)
